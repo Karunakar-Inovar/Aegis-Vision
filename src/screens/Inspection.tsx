@@ -5,7 +5,7 @@ import { Play, Pause, Square, Settings, Camera } from 'lucide-react'
 import { mockData } from '@/mock/mockData'
 import type { ROIArea, Inspection } from '@/types/types'
 
-export const Inspection: React.FC = () => {
+export const InspectionScreen: React.FC = () => {
   const [selectedInspection, setSelectedInspection] = useState<Inspection | null>(mockData.inspections[0])
   const [roiAreas, setROIAreas] = useState<ROIArea[]>(mockData.roiAreas)
   const [selectedROI, setSelectedROI] = useState<string>('')
