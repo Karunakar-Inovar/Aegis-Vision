@@ -1,7 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Sidebar, { EnhancedSidebar, CompactSidebar } from '@/components/Sidebar'
+import Sidebar from '@/components/Sidebar'
+import { Sidebar as EnhancedSidebar } from '@/components/Layout/Sidebar'
 import { designTokens } from '@/lib/designTokens'
+
+// For the compact sidebar, we'll use the same Layout Sidebar but with different props
+const CompactSidebar = EnhancedSidebar
 
 // Example 1: Basic Sidebar with design tokens
 export function BasicSidebarExample() {
