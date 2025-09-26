@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { PageWrapper } from '@/components/Layout/PageWrapper'
 import { Plus, Camera as CameraIcon, Settings, Trash2, Eye, EyeOff, Wifi, WifiOff, X } from 'lucide-react'
-import { mockData } from '@/mock/mockData'
+import { mockCameras } from '@/mock/camerasData'
 import { cn } from '@/lib/utils'
 import type { Camera } from '@/types/types'
 
 export const CameraSetup: React.FC = () => {
-  const [cameras, setCameras] = useState(mockData.cameras)
+  const [cameras, setCameras] = useState(mockCameras)
   const [selectedCamera, setSelectedCamera] = useState<Camera | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
 

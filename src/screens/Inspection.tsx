@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { PageWrapper } from '@/components/Layout/PageWrapper'
 import { ROIOverlay, ROIControls } from '@/components/ROIOverlay/ROIOverlay'
 import { Play, Pause, Square, Settings, Camera } from 'lucide-react'
-import { mockData } from '@/mock/mockData'
+import { mockInspections, mockROIAreas } from '@/mock/inspectionData'
 import type { ROIArea, Inspection } from '@/types/types'
 
 export const InspectionScreen: React.FC = () => {
-  const [selectedInspection, setSelectedInspection] = useState<Inspection | null>(mockData.inspections[0])
-  const [roiAreas, setROIAreas] = useState<ROIArea[]>(mockData.roiAreas)
+  const [selectedInspection, setSelectedInspection] = useState<Inspection | null>(mockInspections[0])
+  const [roiAreas, setROIAreas] = useState<ROIArea[]>(mockROIAreas)
   const [selectedROI, setSelectedROI] = useState<string>('')
   const [isRunning, setIsRunning] = useState(false)
 
@@ -17,7 +17,7 @@ export const InspectionScreen: React.FC = () => {
 
   const handleToggleROI = (roiId: string) => {
     setROIAreas(areas => 
-      areas.map(area => 
+      areas.map((area: ROIArea) => 
         area.id === roiId ? { ...area, isActive: !area.isActive } : area
       )
     )
@@ -34,13 +34,13 @@ export const InspectionScreen: React.FC = () => {
               <select
                 value={selectedInspection?.id || ''}
                 onChange={(e) => {
-                  const inspection = mockData.inspections.find(i => i.id === e.target.value)
+                  const inspection = mockInspections.find(i => i.id === e.target.value)
                   setSelectedInspection(inspection || null)
                 }}
                 className="px-3 py-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500"
               >
                 <option value="">Select inspection...</option>
-                {mockData.inspections.map(inspection => (
+                {mockInspections.map((inspection: Inspection) => (
                   <option key={inspection.id} value={inspection.id}>
                     {inspection.name}
                   </option>

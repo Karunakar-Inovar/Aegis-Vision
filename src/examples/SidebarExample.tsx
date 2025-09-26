@@ -12,7 +12,7 @@ export function BasicSidebarExample() {
   return (
     <Router>
       <div className="flex min-h-screen">
-        <Sidebar />
+        <Sidebar activeModule="dashboard" />
         <main 
           className="flex-1 p-8"
           style={{

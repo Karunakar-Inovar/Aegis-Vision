@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { PageWrapper } from '@/components/Layout/PageWrapper'
 import { Play, Pause, Download, Upload, Brain, TrendingUp } from 'lucide-react'
-import { mockData } from '@/mock/mockData'
+import { mockModels } from '@/mock/modelData'
 import type { Model } from '@/types/types'
 
 export const ModelTraining: React.FC = () => {
-  const [models] = useState(mockData.models)
+  const [models] = useState(mockModels)
   const [selectedModel, setSelectedModel] = useState<Model | null>(models[0])
 
   const getStatusColor = (status: Model['status']) => {
@@ -53,7 +53,7 @@ export const ModelTraining: React.FC = () => {
               </div>
               
               <div className="divide-y divide-gray-200">
-                {models.map((model) => (
+                {models.map((model: Model) => (
                   <div
                     key={model.id}
                     className={`p-4 cursor-pointer hover:bg-gray-50 ${

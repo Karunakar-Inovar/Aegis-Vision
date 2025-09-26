@@ -27,8 +27,23 @@ import {
   MemoryStick,
   Network
 } from 'lucide-react'
-import { mockData } from '@/mock/mockData'
+import { mockDashboardMetrics, mockRecentAlerts, mockDefectDistribution } from '@/mock/dashboardData'
 import type { Alert } from '@/types/types'
+
+interface DashboardCamera {
+  id: number
+  name: string
+  status: 'active' | 'inactive'
+  roiStatus: 'normal' | 'warning' | 'alert'
+  imageUrl: string
+}
+
+interface DefectDistribution {
+  type: string
+  count: number
+  percentage: number
+  trend: 'up' | 'down' | 'stable'
+}
 
 export const Dashboard: React.FC = () => {
   const [alertDrawerOpen, setAlertDrawerOpen] = useState(false)
@@ -69,7 +84,7 @@ export const Dashboard: React.FC = () => {
   ]
 
   // Mock camera feed data
-  const cameras = [
+  const cameras: DashboardCamera[] = [
     {
       id: 1,
       name: 'Assembly Line East',
@@ -213,7 +228,7 @@ export const Dashboard: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-sm text-gray-400 mb-1">Quality Score</div>
-                  <div className="text-2xl font-bold">{mockData.dashboardMetrics.qualityScore}%</div>
+                  <div className="text-2xl font-bold">{mockDashboardMetrics.qualityScore}%</div>
                 </div>
                 <div className="p-2 rounded-lg bg-green-500/20">
                   <CheckCircle className="h-5 w-5 text-green-400" />
@@ -230,7 +245,7 @@ export const Dashboard: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-sm text-gray-400 mb-1">Defects Today</div>
-                  <div className="text-2xl font-bold">{mockData.dashboardMetrics.totalDefectsToday}</div>
+                  <div className="text-2xl font-bold">{mockDashboardMetrics.totalDefectsToday}</div>
                 </div>
                 <div className="p-2 rounded-lg bg-red-500/20">
                   <AlertTriangle className="h-5 w-5 text-red-400" />
@@ -247,7 +262,7 @@ export const Dashboard: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-sm text-gray-400 mb-1">Throughput</div>
-                  <div className="text-2xl font-bold">{mockData.dashboardMetrics.productionMetrics.throughput}</div>
+                  <div className="text-2xl font-bold">{mockDashboardMetrics.productionMetrics.throughput}</div>
                   <div className="text-xs text-gray-400">items/hr</div>
                 </div>
                 <div className="p-2 rounded-lg bg-blue-500/20">
@@ -265,7 +280,7 @@ export const Dashboard: React.FC = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <div className="text-sm text-gray-400 mb-1">System Uptime</div>
-                  <div className="text-2xl font-bold">{mockData.dashboardMetrics.systemUptime}%</div>
+                  <div className="text-2xl font-bold">{mockDashboardMetrics.systemUptime}%</div>
                 </div>
                 <div className="p-2 rounded-lg bg-green-500/20">
                   <Clock className="h-5 w-5 text-green-400" />
@@ -279,7 +294,7 @@ export const Dashboard: React.FC = () => {
 
           {/* Camera Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-            {cameras.map((camera) => (
+            {cameras.map((camera: DashboardCamera) => (
               <div key={camera.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700">
                 <div className="relative aspect-video">
                   {/* Camera Feed */}
@@ -350,7 +365,7 @@ export const Dashboard: React.FC = () => {
                 <div className="grid grid-cols-2 gap-6 mb-6">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-green-400 mb-2">
-                      {mockData.dashboardMetrics.productionMetrics.passedItems.toLocaleString()}
+                      {mockDashboardMetrics.productionMetrics.passedItems.toLocaleString()}
                     </div>
                     <div className="text-sm text-gray-400">Items Passed</div>
                     <div className="flex items-center justify-center mt-1">
@@ -361,7 +376,7 @@ export const Dashboard: React.FC = () => {
                   
                   <div className="text-center">
                     <div className="text-3xl font-bold text-red-400 mb-2">
-                      {mockData.dashboardMetrics.productionMetrics.failedItems.toLocaleString()}
+                      {mockDashboardMetrics.productionMetrics.failedItems.toLocaleString()}
                     </div>
                     <div className="text-sm text-gray-400">Items Failed</div>
                     <div className="flex items-center justify-center mt-1">
@@ -376,13 +391,13 @@ export const Dashboard: React.FC = () => {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium">Quality Score</span>
                     <span className="text-sm font-semibold text-green-400">
-                      {mockData.dashboardMetrics.qualityScore}%
+                      {mockDashboardMetrics.qualityScore}%
                     </span>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div 
                       className="bg-green-500 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${mockData.dashboardMetrics.qualityScore}%` }}
+                      style={{ width: `${mockDashboardMetrics.qualityScore}%` }}
                     />
                   </div>
                 </div>
@@ -392,13 +407,13 @@ export const Dashboard: React.FC = () => {
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium">Production Efficiency</span>
                     <span className="text-sm font-semibold text-blue-400">
-                      {mockData.dashboardMetrics.productionMetrics.efficiency}%
+                      {mockDashboardMetrics.productionMetrics.efficiency}%
                     </span>
                   </div>
                   <div className="w-full bg-gray-700 rounded-full h-2">
                     <div 
                       className="bg-blue-500 h-2 rounded-full transition-all duration-500"
-                      style={{ width: `${mockData.dashboardMetrics.productionMetrics.efficiency}%` }}
+                      style={{ width: `${mockDashboardMetrics.productionMetrics.efficiency}%` }}
                     />
                   </div>
                 </div>
@@ -479,7 +494,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="p-4">
                 <div className="space-y-3">
-                  {mockData.alerts.slice(0, 5).map((alert) => (
+                  {mockRecentAlerts.slice(0, 5).map((alert: Alert) => (
                     <div 
                       key={alert.id}
                       className="flex items-start space-x-3 p-3 hover:bg-gray-750 rounded-lg cursor-pointer"
@@ -522,7 +537,7 @@ export const Dashboard: React.FC = () => {
               </div>
               <div className="p-4">
                 <div className="space-y-4">
-                  {mockData.qualityMetrics.defectsByType.map((defect) => (
+                  {mockDefectDistribution.map((defect: DefectDistribution) => (
                     <div key={defect.type} className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
                         <div className="w-3 h-3 bg-red-500 rounded-full" />
@@ -546,7 +561,7 @@ export const Dashboard: React.FC = () => {
         <AlertDrawer
           isOpen={alertDrawerOpen}
           onClose={() => setAlertDrawerOpen(false)}
-          alerts={mockData.alerts}
+          alerts={mockRecentAlerts}
           onAlertClick={handleAlertClick}
           onAcknowledge={handleAcknowledgeAlert}
           onDismiss={handleDismissAlert}
@@ -560,7 +575,7 @@ export const Dashboard: React.FC = () => {
         >
           <AlertCircleIcon className="h-6 w-6" />
           <span className="absolute -top-1 -right-1 bg-red-500 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-            {mockData.alerts.filter(a => a.status === 'active').length}
+            {mockRecentAlerts.filter(a => a.status === 'active').length}
           </span>
         </button>
       </div>

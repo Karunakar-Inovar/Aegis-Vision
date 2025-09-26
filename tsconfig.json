@@ -12,6 +12,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    "types": ["vite/client"],
     // Disable TypeScript warnings for unused variables and function parameters
     // Useful during development when variables/parameters might be temporarily unused
     "noUnusedLocals": false,
