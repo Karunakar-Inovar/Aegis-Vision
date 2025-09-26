@@ -87,6 +87,9 @@ export const Topbar: React.FC<TopbarProps> = ({
       <div className="flex items-center justify-between h-16 px-6">
         {/* Left section */}
         <div className="flex items-center space-x-4">
+          {/* Logo */}
+          <img src="/aegis-logo.png" alt="Aegis Vision Logo" className="h-8 w-auto mr-2" />
+          
           {/* Mobile menu button */}
           <button
             onClick={onMenuClick}

@@ -95,10 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeModule }) => {
       {/* Logo */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center">
-          <div className="w-8 h-8 bg-blue-600 rounded-md flex items-center justify-center mr-3">
-            <CameraIcon size={18} className="text-white" />
-          </div>
-          <h1 className="text-xl font-bold">Vision AI</h1>
+          <img src="/aegis-logo.png" alt="Aegis Vision Logo" className="h-10 w-auto" />
         </div>
       </div>
       {/* Navigation */}

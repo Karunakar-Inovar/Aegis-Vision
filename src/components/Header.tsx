@@ -31,6 +31,7 @@ const Header = () => {
     <header className="bg-gray-800 border-b border-gray-700 py-2 px-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
+          <img src="/aegis-logo.png" alt="Aegis Vision Logo" className="h-8 w-auto mr-2" />
           <h1 className="text-xl font-bold mr-8">Security Operations Center</h1>
           <span className="text-sm text-gray-400 mr-4">
             Live View • {new Date().toLocaleString()}
