@@ -12,6 +12,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "strict": true,
+    // Disable TypeScript warnings for unused variables and function parameters
+    // Useful during development when variables/parameters might be temporarily unused
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
